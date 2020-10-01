@@ -12,6 +12,7 @@ Route::group(['prefix'=>'v1'],function (){
     Route::post('user/signin',[AuthController::class,'signin']);
     Route::post('user/register',[AuthController::class,'store']);
 
+    Route::post('user/logout',[AuthController::class,'logout']);
 
 
 });

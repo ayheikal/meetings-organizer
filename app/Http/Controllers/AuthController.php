@@ -8,7 +8,10 @@ use JWTAuth;
 
 class AuthController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('jwt.auth')->only('logout');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,4 +66,10 @@ class AuthController extends Controller
         return response()->json(['token'=>$token],200);
 
     }
+
+    public function logout(){
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return response()->json(['msg'=>"successfully loged out"],200);
+    }
+
 }
